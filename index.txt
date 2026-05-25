@@ -1,0 +1,64 @@
+<!-- 
+========================================
+    🚧 Basic Land Page 🚧
+========================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anurag G | DevOps Engineer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Anurag G</h1>
+    <p>DevOps Engineer</p>
+  </header>
+
+  <section class="about">
+    <h2>👨‍💻 Who Am i!</h2>
+    <ul>
+      <li>👨‍💻 I’m a DevOps Engineer passionate about building reliable, scalable, and automated systems.</li>
+      <li>⚙️ Currently working on streamlining CI/CD pipelines and improving infrastructure efficiency.</li>
+      <li>🤝 Open to collaborating on cloud, automation, and infrastructure projects.</li>
+      <li>📚 Continuously learning and exploring tools in cloud computing, containerization, and system design.</li>
+      <li>💬 Ask me about DevOps, CI/CD, cloud platforms, and performance optimization.</li>
+      <li>⚡ Fun fact: I balance my tech life with fitness and long badminton sessions!</li>
+    </ul>
+  </section>
+
+  <section class="tech">
+    <h2>👨🏻‍💻 Tech Stack</h2>
+    <div class="tags">
+
+      <span>Aamzon Web Services</span>
+      <span>GitHub Actions</span>
+      <span>Terraform</span>
+      <span>Python</span>
+      <span>MySQL</span>
+      <span>Docker</span>
+      <span>Kubernetes</span>
+      
+      <span>Linux</span>
+      <span>Draw.io</span>
+      <span>Vercel</span>
+      <span>Domain/DNS</span>
+      <span>Prometheus</span>
+      <span>Grafana</span>
+
+    </div>
+  </section>
+
+  <section class="socials">
+    <h2>💰 Socials</h2>
+    <a href="https://github.com/anuraggurumurthy" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/anuraggurumurthy" target="_blank">LinkedIn</a>
+  </section>
+
+  <footer>
+    <p>2026 © Anurag G</p>
+  </footer>
+
+</body>
+</html> 

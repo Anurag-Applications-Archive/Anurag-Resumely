@@ -1,0 +1,828 @@
+﻿<!--
+========================================
+    MAINTENANCE MODE ENABLED
+   Status: Deployment in progress...
+========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anurag G ✨ | Maintenance</title>
+<link rel="shortcut icon" href="./Logo/favicon.ico?v=5" type="image/x-icon">
+<link rel="icon" href="./Logo/favicon.ico?v=5" sizes="any">
+<link rel="icon" href="./Logo/favicon.svg?v=5" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="96x96" href="./Logo/favicon-96x96.png?v=5">
+<link rel="apple-touch-icon" sizes="180x180" href="./Logo/apple-touch-icon.png?v=5">
+<link rel="manifest" href="./Logo/site.webmanifest?v=5">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+    animation: pageFadeIn 1s ease forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 4;
+}
+
+.snowflake {
+    position: absolute;
+    top: -20px;
+    color: white;
+    opacity: 0.85;
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+    to {
+        transform: translate(35vw, 105vh) rotate(360deg);
+    }
+}
+
+.about-logo {
+    margin-bottom: 12px;
+}
+
+.about-logo img {
+    width: 58px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-logo a {
+    display: inline-block;
+}
+
+.about-logo a:hover img,
+.corner-logo a:hover img {
+    transform: scale(1.16);
+    filter: drop-shadow(0 0 16px rgba(255,255,255,0.55));
+}
+
+.corner-logo {
+    position: absolute;
+    right: 38px;
+    bottom: 25px;
+    z-index: 5;
+    opacity: 1.00;
+}
+
+.corner-logo img {
+    width: 20px;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.corner-logo a {
+    display: block;
+}
+
+.corner-footer {
+    position: absolute;
+    right: 66px;
+    bottom: 24px;
+    z-index: 3;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    opacity: 0.36;
+    letter-spacing: 0.5px;
+}
+
+/* Fullscreen Background Video */
+.hero video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero video {
+        object-fit: cover;
+    }
+}
+
+/* Text Overlay */
+.text-overlay {
+    position: absolute;
+    left: 2%;
+    bottom: 8%;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.7;
+    z-index: 2;
+    text-shadow: 0 0 12px rgba(0,0,0,0.75);
+}
+
+.terminal-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+.loading-dots::after {
+    content: "";
+    animation: loadingDots 1.4s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+    0% {
+        content: "";
+    }
+    25% {
+        content: ".";
+    }
+    50% {
+        content: "..";
+    }
+    75%, 100% {
+        content: "...";
+    }
+}
+
+.title {
+    margin-bottom: 14px;
+    font-size: 48px;
+    line-height: 1.1;
+}
+
+.status-line {
+    position: relative;
+    padding-left: 22px;
+    min-height: 34px;
+}
+
+.status-line::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    opacity: 0.7;
+}
+
+.cursor {
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    margin-left: 5px;
+    background: white;
+    vertical-align: -3px;
+    animation: cursorBlink 0.9s infinite;
+}
+
+.live-status {
+    display: inline-block;
+}
+
+@keyframes cursorBlink {
+    0%, 45% {
+        opacity: 1;
+    }
+    46%, 100% {
+        opacity: 0;
+    }
+}
+
+.deploy-progress {
+    width: 360px;
+    max-width: 90vw;
+    margin-top: 18px;
+}
+
+.progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.progress-track {
+    height: 8px;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+}
+
+.progress-fill {
+    position: relative;
+    width: 78%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.9));
+    animation: progressPulse 1.8s ease-in-out infinite alternate;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+    transform: translateX(-100%);
+    animation: progressShimmer 2.2s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+    from {
+        opacity: 0.65;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes progressShimmer {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Glow Effect */
+.glow {
+    display: inline-block;
+    animation: glowAnim 1.2s infinite alternate;
+}
+
+@keyframes glowAnim {
+    from {
+        text-shadow: 0 0 5px transparent;
+    }
+    to {
+        text-shadow: 0 0 15px transparent, 0 0 25px transparent;
+    }
+}
+
+/* Rotation */
+.gear {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .text-overlay {
+        left: 2%;
+        bottom: 8%;
+        max-width: 94vw;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .terminal-label {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    .title {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .deploy-progress {
+        width: 280px;
+        margin-top: 12px;
+    }
+
+    .progress-meta {
+        font-size: 11px;
+    }
+
+    .nav {
+        top: 16px;
+        right: 16px;
+        gap: 10px;
+    }
+
+    .nav button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .about-logo img {
+        width: 48px;
+    }
+
+    .corner-logo {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .corner-logo img {
+        width: 26px;
+    }
+
+    .corner-footer {
+        right: 54px;
+        bottom: 18px;
+        font-size: 9px;
+    }
+
+    .modal-content {
+        padding: 28px;
+        width: 92%;
+    }
+
+    .modal-content h2 {
+        font-size: 26px;
+    }
+
+    .modal-content p {
+        font-size: 16px;
+        white-space: normal;
+    }
+
+    .contact-link {
+        padding: 10px 14px;
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .copy-email {
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Top Right Buttons */
+.nav {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+}
+
+.nav button {
+    padding: 11px 20px;
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 25px;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+}
+
+.nav button:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: rgba(255,255,255,0.34);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 14px rgba(255,255,255,0.14);
+}
+
+.nav button.active {
+    border-color: rgba(255,255,255,0.42);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 14px rgba(255,255,255,0.16);
+}
+
+/* Popup Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: transparent;
+    padding: 45px;
+    border-radius: 15px;
+    width: 420px;
+    max-width: 90%;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    animation: fadeIn 0.4s ease;
+    box-shadow: 0 0 20px transparent;
+}
+
+.modal-content h2 {
+    font-size: 32px;
+    margin-bottom: 18px;
+    text-decoration: underline;
+}
+
+#contact .modal-content h2 {
+    transform: translateX(16px);
+}
+
+#contact .about-logo {
+    transform: translateX(16px);
+}
+
+.modal-content p {
+    font-size: 22px;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+#about .modal-content p {
+    white-space: nowrap;
+}
+
+.contact-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 12px 20px;
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    border-color: rgba(255,255,255,0.42);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 14px rgba(255,255,255,0.16);
+    transform: translateY(-3px);
+}
+
+.contact-link.copied {
+    transform: translateX(18px);
+}
+
+.copy-email {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 18px;
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-email:hover {
+    border-color: rgba(255,255,255,0.42);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 14px rgba(255,255,255,0.16);
+    transform: translateY(-3px);
+}
+
+.nav button:focus-visible,
+.contact-link:focus-visible,
+.copy-email:focus-visible,
+.about-logo a:focus-visible,
+.corner-logo a:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.7);
+    outline-offset: 4px;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .snow {
+        display: none;
+    }
+
+    .cursor {
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="snow"></div>
+
+<audio id="site-audio" autoplay loop preload="auto">
+    <source src="./Background.mp3" type="audio/mpeg">
+</audio>
+
+<div class="corner-logo">
+    <a href="./" aria-label="Go to home">
+        <img src="./Logo/Logo.png" alt="Anurag Gurumurthy logo">
+    </a>
+</div>
+<div class="corner-footer">© 2026 Anurag Gurumurthy |</div>
+
+<!-- Background Video
+<div class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="./Background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+-->
+
+<!-- Text -->
+<div class="text-overlay">
+    <span class="terminal-label">DEPLOYMENT LOG<span class="loading-dots"></span></span>
+    <h1 class="title">SITE UNDER<br>MAINTENANCE</h1>
+    <p class="status-line type-line" data-text="Applying system improvements"></p>
+    <p class="status-line type-line" data-text="Making everything faster & smarter"></p>
+    <p class="status-line"><span class="live-status"></span><span class="cursor"></span></p>
+    <div class="deploy-progress">
+        <div class="progress-meta">
+            <span>DEPLOYING</span>
+            <span id="progress-percent">80%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Buttons -->
+<div class="nav">
+    <button id="about-button" onclick="openModal('about')">About</button>
+    <button id="contact-button" onclick="openModal('contact')">Contact</button>
+</div>
+
+<!-- About Modal -->
+<div id="about" class="modal">
+    <div class="modal-content">
+        <div class="about-logo">
+            <a href="./" aria-label="Go to home">
+                <img src="./Logo/Logo.png" alt="Anurag Gurumurthy logo">
+            </a>
+        </div>
+        <h2>About Me</h2>
+        <p>Hi, Anurag here 👋<br>DevOps Engineer Passionate.</p>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact" class="modal">
+    <div class="modal-content">
+        <div class="about-logo">
+            <a href="./" aria-label="Go to home">
+                <img src="./Logo/Logo.png" alt="Anurag Gurumurthy logo">
+            </a>
+        </div>
+        <h2>Contact</h2>
+        <button class="contact-link" type="button" onclick="copyEmail(this)" data-email="anuraggurumurthy@gmail.com" aria-label="Copy Gmail address">
+            anuraggurumurthy@gmail.com
+        </button>
+    </div>
+</div>
+
+<script>
+const siteAudio = document.getElementById('site-audio');
+
+function startSiteAudio() {
+    if (!siteAudio) {
+        return Promise.resolve(false);
+    }
+
+    siteAudio.volume = 0.45;
+    return siteAudio.play()
+        .then(() => true)
+        .catch(() => false);
+}
+
+function enableAudioOnInteraction() {
+    startSiteAudio().then(isPlaying => {
+        if (isPlaying) {
+            window.removeEventListener('mousemove', enableAudioOnInteraction);
+            window.removeEventListener('touchstart', enableAudioOnInteraction);
+            window.removeEventListener('keydown', enableAudioOnInteraction);
+        }
+    });
+}
+
+startSiteAudio().then(isPlaying => {
+    if (!isPlaying) {
+        window.addEventListener('mousemove', enableAudioOnInteraction);
+        window.addEventListener('touchstart', enableAudioOnInteraction);
+        window.addEventListener('keydown', enableAudioOnInteraction);
+    }
+});
+
+const snowContainer = document.querySelector('.snow');
+
+for (let i = 0; i < 45; i++) {
+    const snowflake = document.createElement('span');
+    snowflake.className = 'snowflake';
+    snowflake.textContent = '❄';
+    snowflake.style.left = Math.random() * 90 - 30 + 'vw';
+    snowflake.style.fontSize = Math.random() * 8 + 6 + 'px';
+    snowflake.style.animationDuration = Math.random() * 6 + 6 + 's';
+    snowflake.style.animationDelay = Math.random() * 8 + 's';
+    snowflake.style.opacity = Math.random() * 0.5 + 0.35;
+    snowContainer.appendChild(snowflake);
+}
+
+const typedLines = document.querySelectorAll('.type-line');
+const liveStatus = document.querySelector('.live-status');
+const progressPercent = document.getElementById('progress-percent');
+const progressFill = document.getElementById('progress-fill');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const liveMessages = [
+    'Deployment in progress...',
+    'Checking services...',
+    'Validating SSL...',
+    'Warming cache...'
+];
+let liveIndex = 0;
+let progressValue = 80;
+
+function typeText(element, text, speed = 45) {
+    return new Promise(resolve => {
+        let index = 0;
+        const typing = setInterval(() => {
+            element.textContent = text.slice(0, index + 1);
+            index++;
+
+            if (index === text.length) {
+                clearInterval(typing);
+                resolve();
+            }
+        }, speed);
+    });
+}
+
+async function startDeploymentLog() {
+    if (reduceMotion) {
+        typedLines.forEach(line => {
+            line.textContent = line.dataset.text;
+        });
+        liveStatus.textContent = liveMessages[liveIndex];
+        return;
+    }
+
+    for (const line of typedLines) {
+        await typeText(line, line.dataset.text);
+        await new Promise(resolve => setTimeout(resolve, 350));
+    }
+
+    liveStatus.textContent = liveMessages[liveIndex];
+    setInterval(() => {
+        liveIndex = (liveIndex + 1) % liveMessages.length;
+        liveStatus.textContent = liveMessages[liveIndex];
+        progressValue = progressValue >= 90 ? 80 : progressValue + 1;
+        progressPercent.textContent = progressValue + '%';
+        progressFill.style.width = progressValue + '%';
+    }, 2400);
+}
+
+startDeploymentLog();
+
+function copyEmail(copyButton) {
+    const email = copyButton.dataset.email;
+    const originalText = email;
+
+    function fallbackCopy() {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        showCopied();
+    }
+
+    function showCopied() {
+        copyButton.classList.add('copied');
+        copyButton.textContent = 'Copied';
+
+        setTimeout(() => {
+            copyButton.classList.remove('copied');
+            copyButton.textContent = originalText;
+        }, 1800);
+    }
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(() => {
+            showCopied();
+        }).catch(fallbackCopy);
+    } else {
+        fallbackCopy();
+    }
+}
+
+function openModal(id) {
+    document.getElementById(id).style.display = "flex";
+    document.querySelectorAll('.nav button').forEach(button => {
+        button.classList.remove('active');
+    });
+    document.getElementById(id + '-button').classList.add('active');
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+    document.getElementById(id + '-button').classList.remove('active');
+}
+
+function closeAllModals() {
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = "none";
+    });
+    document.querySelectorAll('.nav button').forEach(button => {
+        button.classList.remove('active');
+    });
+}
+
+window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            closeAllModals();
+        }
+    });
+}
+
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeAllModals();
+    }
+});
+</script>
+
+</body>
+</html>
+
