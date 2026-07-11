@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine next version
+        id: version
+        run: |
+          latest_tag=$(git tag --list 'v*.*.*' --sort=-v:refname | head -n1)
+
+          if [ -z "$latest_tag" ]; then
+            new_tag="v1.0.0"
+          else
+            version="${latest_tag#v}"
+            IFS='.' read -r major minor patch <<< "$version"
+            patch=$((patch + 1))
+            new_tag="v${major}.${minor}.${patch}"
+          fi
+
+          echo "Latest tag: ${latest_tag:-none}"
+          echo "New tag: $new_tag"
+          echo "new_tag=$new_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.version.outputs.new_tag }}"
+          git push origin "${{ steps.version.outputs.new_tag }}"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.new_tag }}
+          name: ${{ steps.version.outputs.new_tag }}
+          generate_release_notes: true
+
+      - name: Prune old tags and releases (keep latest 10)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          all_tags=$(git tag --list 'v*.*.*' --sort=-v:refname)
+          count=0
+          for t in $all_tags; do
+            count=$((count + 1))
+            if [ "$count" -gt 10 ]; then
+              echo "Deleting old release/tag: $t"
+              gh release delete "$t" --yes --cleanup-tag || true
+              git push origin ":refs/tags/$t" || true
+            fi
+          done
