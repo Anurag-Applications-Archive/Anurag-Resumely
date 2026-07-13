@@ -1,0 +1,17 @@
+Guidance for Claude Code sessions working in this repo. Read [MEMORY.md](MEMORY.md) for full project history and current state before making non-trivial changes — it explains *why* things are the way they are, which this file doesn't repeat.
+
+## What this project is
+A static, single-page "site under maintenance" placeholder (`index.html`) for Anurag Gurumurthy's personal site, despite the repo being named "Anurag-Resumely" — there is no resume-editing application code anywhere in this repository. `index.html` is fully self-contained HTML/CSS/JS (Google Fonts import, inline `<style>` and `<script>`), with a looping background audio track (`Background.mp3`), a snowfall animation, About/Contact modals, and a simulated typed "deployment log" with a fake progress bar. Supporting content: `Logo/` (favicons and several logo variants), `Background.mp4` (an unused/commented-out background video), a GitHub Actions workflow (`.github/workflows/release.yml`) that auto-tags and creates a GitHub release on every push to `main` and prunes old tags/releases beyond the latest 10, and `release notes/Latest Release.txt` which holds only a build timestamp. `scripts/StartService.bat` and `StopService.bat` start/stop a Windows service literally named `Anurag-Resumely` on whatever host they're run on — no source for that service exists in this repo. `index.txt` and `style.css` are an older, different personal-bio landing page that `index.html` does not reference or use. `Maintaince.txt` is another older/duplicate maintenance-page draft that references logo filenames (`MaintainceMobileLogo.png`, `MaintainceWebLogo.png`) that don't exist in `Logo/`.
+
+## Architecture rules to preserve
+- `index.html` is fully self-contained (inline `<style>` and `<script>`); it does not load `style.css` or reference `index.txt`. Don't wire those files into `index.html` without confirming that's actually intended — as they stand they look like orphaned leftovers from an earlier design.
+- Asset references in `index.html` use root-relative paths (`./Logo/...`, `./Background.mp3`). Keep assets at those locations, or update every reference together if moving them.
+- `.github/workflows/release.yml` runs on every push to `main`: it computes the next semver tag from existing `v*.*.*` tags, pushes it, creates a GitHub release, and deletes all but the 10 most recent tags/releases. Any change to versioning/tagging conventions must account for this running unattended on every push to `main`.
+
+## Commands to run before considering a change done
+None exist. There is no `package.json`, build tool, linter, or test suite in this repo — it is plain static HTML/CSS/JS. Verify changes by opening `index.html` directly in a browser.
+
+## Things NOT to do
+- Don't assume this repo implements a "resume editor." Despite the repo name Anurag-Resumely and the README title "Anurag-Resume-Editor," no such application code exists here — only the maintenance-mode placeholder page described above.
+- Don't cite `scripts/StartService.bat` / `StopService.bat` as evidence of a real backend/service living in this repo — they merely call `net start`/`net stop` on a Windows service named `Anurag-Resumely` that has no corresponding source anywhere in this repository.
+- Don't treat `Maintaince.txt` or `index.txt` as live/served pages — `Maintaince.txt` references logo files that don't exist in `Logo/`, and `index.txt` / `style.css` describe an older bio-page design that `index.html` has superseded and does not use.
